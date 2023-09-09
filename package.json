@@ -1,0 +1,25 @@
+{
+  "name": "winston-influxdb-transport",
+  "version": "0.1.0",
+  "description": "A Winston transport for storing log messages into InfluxDB",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "winston",
+    "influxdb",
+    "transport",
+    "logging"
+  ],
+  "author": "Mihael Lenic",
+  "license": "MIT",
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.33.2",
+    "typescript": "^5.0.4",
+    "winston-transport": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11"
+  }
+}
