@@ -27,8 +27,13 @@
     "influx-data",
     "influxdb",
     "influxdb2",
-    "transport",
+    "winston-transport",
+    "winston-influxdb2",
+    "influxdb2-winston-transport",
     "logging",
-    "nodejs"
+    "nodejs",
+    "typescript",
+    "expressjs",
+    "backend"
   ]
 }

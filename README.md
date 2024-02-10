@@ -66,4 +66,4 @@ winston.createLogger({
 
 ## Debug
 
-If log level is set to `debug`, the message "InfluxDB2Transport initialized" will be sent to InfluxDBv2 on startup. This is useful for debugging the transport issues. Otherwise, transport errors will be logged only on the next flush interval (default 60s).
+If log level is set to `debug`, the message "InfluxDB2Transport initialized" will be sent to InfluxDBv2 on startup. This is useful for debugging the transport issues. Otherwise, transport errors will be logged only on the first flush interval (default 60s).
