@@ -1,6 +1,6 @@
 {
   "name": "winston-influxdb2",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A Winston transport for InfluxDBv2",
   "main": "src/InfluxDB2Transport.ts",
   "repository": "https://github.com/mihaellenic/winston-influxdb2",
