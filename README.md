@@ -21,10 +21,6 @@ winston.createLogger({
             'my-bucket', // influxdbv2 bucket
             'my-token', // influxdbv2 token
             'my-measurement', // influxdbv2 measurement
-            { // optional tags
-                app: 'my-app-name',
-                tag2: 'value2',
-            }
         )
     ],
 });
