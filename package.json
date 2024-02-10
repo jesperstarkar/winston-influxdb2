@@ -1,14 +1,16 @@
 {
   "name": "winston-influxdb2",
-  "version": "1.0.1",
-  "description": "A Winston transport for storing log messages in InfluxDBv2",
-  "main": "src/InfluxDBTransport.js",
+  "version": "1.0.2",
+  "description": "A Winston transport for InfluxDBv2",
+  "main": "src/InfluxDB2Transport.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "winston",
+    "influx-data",
     "influxdb",
+    "influxdb2",
     "transport",
     "logging"
   ],

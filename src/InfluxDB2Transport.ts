@@ -4,14 +4,14 @@ import {
   Point,
   WriteApi,
 } from '@influxdata/influxdb-client';
-import { InfluxDBTransportConfig } from "./types";
+import { InfluxDB2TransportConfig } from "./types";
 
 export class InfluxDB2Transport extends Transport {
   private readonly writeApi: WriteApi;
   private readonly measurement: string;
   private readonly tags: Record<string, string>;
 
-  constructor({level, url, token, org, bucket, measurement, precision, writeOptions, tags }: InfluxDBTransportConfig) {
+  constructor({level, url, token, org, bucket, measurement, precision, writeOptions, tags }: InfluxDB2TransportConfig) {
     super();
     this.level = level;
     this.measurement = measurement;

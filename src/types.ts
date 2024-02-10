@@ -1,6 +1,6 @@
 import {WriteOptions, WritePrecisionType} from "@influxdata/influxdb-client";
 
-export interface InfluxDBTransportConfig {
+export interface InfluxDB2TransportConfig {
     level: string,
     url: string;
     org: string;
