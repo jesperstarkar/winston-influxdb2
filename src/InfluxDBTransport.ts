@@ -4,24 +4,17 @@ import {
   Point,
   WriteApi,
 } from '@influxdata/influxdb-client';
-import { Config } from "./types";
-import * as os from 'os';
+import { InfluxDBTransportConfig } from "./types";
 
 export class InfluxDBTransport extends Transport {
   private readonly writeApi: WriteApi;
-  private readonly appName: string;
-  private readonly version: string;
-  private readonly hostname: string;
   private readonly measurement: string;
+  private readonly tags: Record<string, string>;
 
-  constructor({url, token, org, bucket, precision, writeOptions, level, appName, measurement, version, hostname, }: Config) {
+  constructor({url, token, org, bucket, precision, writeOptions, tags }: InfluxDBTransportConfig) {
     super();
-
-    this.level = level;
-    this.appName = appName || process.env.npm_package_name || 'unknown';
-    this.version = version || process.env.npm_package_version || 'v0.0.0';
-    this.hostname = hostname || os.hostname();
-    this.measurement = measurement || `${this.appName}_logs`;
+    this.measurement = tags?.measurement || 'logs';
+    this.tags = tags || {};
 
     try {
       this.writeApi = new InfluxDB({ url, token }).getWriteApi(
@@ -31,8 +24,7 @@ export class InfluxDBTransport extends Transport {
         writeOptions
       );
     } catch (e) {
-      console.error('Error in InfluxDBTransport constructor:');
-      console.error(e)
+      console.error('Error in InfluxDBTransport constructor.');
       throw e;
     }
   }
@@ -43,19 +35,20 @@ export class InfluxDBTransport extends Transport {
     });
 
     const point = new Point(this.measurement)
-      .tag('appname', this.appName)
-      .tag('version', this.version)
-      .tag('hostname', this.hostname)
-      .tag('severity', info[Symbol.for('level')])
       .stringField('message', info.message)
       .intField(
         'timestamp',
           new Date(Date.parse(info.timestamp)).getTime() * 1000000
       )
-      .intField('procid', process.pid);
 
+    // Add init tags to the point
+    Object.keys(this.tags).forEach((key) => {
+        point.tag(key, info[key]);
+    });
+
+    // Add log message tags to the point
     Object.keys(info).forEach((key) => {
-        if (key !== 'message' && key !== 'timestamp' && key !== 'level') {
+        if (!['message', 'timestamp'].includes(key)) {
             point.tag(key, info[key]);
         }
     });
