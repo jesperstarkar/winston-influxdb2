@@ -1,8 +1,9 @@
 {
   "name": "winston-influxdb2",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Winston transport for InfluxDBv2",
   "main": "src/InfluxDB2Transport.ts",
+  "repository": "https://github.com/mihaellenic/winston-influxdb2",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
