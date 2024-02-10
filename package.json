@@ -1,6 +1,6 @@
 {
   "name": "winston-influxdb2",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A Winston transport for InfluxDBv2",
   "author": "Mihael Lenic",
   "license": "MIT",
