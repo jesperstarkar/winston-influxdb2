@@ -6,14 +6,15 @@ import {
 } from '@influxdata/influxdb-client';
 import { InfluxDBTransportConfig } from "./types";
 
-export class InfluxDBTransport extends Transport {
+export class InfluxDB2Transport extends Transport {
   private readonly writeApi: WriteApi;
   private readonly measurement: string;
   private readonly tags: Record<string, string>;
 
-  constructor({url, token, org, bucket, precision, writeOptions, tags }: InfluxDBTransportConfig) {
+  constructor({level, url, token, org, bucket, measurement, precision, writeOptions, tags }: InfluxDBTransportConfig) {
     super();
-    this.measurement = tags?.measurement || 'logs';
+    this.level = level;
+    this.measurement = measurement;
     this.tags = tags || {};
 
     try {
@@ -24,7 +25,7 @@ export class InfluxDBTransport extends Transport {
         writeOptions
       );
     } catch (e) {
-      console.error('Error in InfluxDBTransport constructor.');
+      console.error('Error in InfluxDB2Transport constructor.');
       throw e;
     }
   }
@@ -35,11 +36,11 @@ export class InfluxDBTransport extends Transport {
     });
 
     const point = new Point(this.measurement)
-      .stringField('message', info.message)
       .intField(
         'timestamp',
           new Date(Date.parse(info.timestamp)).getTime() * 1000000
       )
+      .stringField('message', info.message)
 
     // Add init tags to the point
     Object.keys(this.tags).forEach((key) => {
