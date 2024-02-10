@@ -14,7 +14,7 @@ npm install winston-influxdb2
 winston.createLogger({
     ... // other options
     transports: [
-        new InfluxDBTransport(
+        new InfluxDB2Transport(
             'info',                     // min log level to send to influxdb
             'http://localhost:8086',    // influxdbv2 url
             'my-org',                   // influxdbv2 organization
