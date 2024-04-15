@@ -1,6 +1,6 @@
 {
   "name": "winston-influxdb2",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A Winston transport for InfluxDBv2",
   "author": "Mihael Lenic",
   "license": "MIT",
@@ -9,6 +9,7 @@
     "src/InfluxDB2Transport.ts"
   ],
   "main": "src/InfluxDB2Transport.ts",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },

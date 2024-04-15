@@ -1,6 +1,6 @@
 # InfluxDBv2 transport for Winston
 
-This module allows you to log [Winston](https://github.com/winstonjs/winston) messages to [InfluxDBv2](https://docs.influxdata.com/influxdb/v2/).
+This module allows you to store log messages from [Winston](https://github.com/winstonjs/winston) to [InfluxDBv2](https://docs.influxdata.com/influxdb/v2/).
 
 ## Installation
 
@@ -15,12 +15,12 @@ winston.createLogger({
   // {...}
   transports: [
     new InfluxDB2Transport(
-      "info",                     // min log level to send to influxdb
-      "http://localhost:8086",    // influxdbv2 url
-      "my-token",                 // influxdbv2 token
-      "my-org",                   // influxdbv2 organization
-      "my-bucket",                // influxdbv2 bucket
-      "my-measurement",           // influxdbv2 measurement
+      "info", // min log level to send to influxdb
+      "http://localhost:8086", // influxdb url
+      "token",
+      "org",
+      "bucket",
+      "measurement",
     ),
   ],
 });
@@ -39,22 +39,22 @@ winston.createLogger({
   // {...}
   transports: [
     new InfluxDB2Transport(
-      "info",                     // min log level to send to influxdb
-      "http://localhost:8086",    // influxdbv2 url
-      "my-token",                 // influxdbv2 token
-      "my-org",                   // influxdbv2 organization
-      "my-bucket",                // influxdbv2 bucket
-      "my-measurement",           // influxdbv2 measurement
+      "info", // min log level to send to influxdb
+      "http://localhost:8086", // influxdb url
+      "token",
+      "org",
+      "bucket",
+      "measurement",
       {
-                                  // write options
+        // write options
         batchSize: 1000,
         flushInterval: 10000,
         retryInterval: 1000,
         maxRetries: 5,
       },
-      "ms",                       // influxdbv2 timestamp precision 
+      "ms", // influxdbv2 timestamp precision
       {
-                                  // global tags to be set on all messages
+        // global tags to be set on all messages
         host: "my-host",
         app: "my-app",
         env: "production",
