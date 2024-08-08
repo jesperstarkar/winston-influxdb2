@@ -10,7 +10,7 @@ import {
 export class InfluxDB2Transport extends Transport {
   private readonly writeApi: WriteApi;
   private readonly measurement: string;
-  private readonly globalTags?: Record<string, string>;
+  private readonly globalTags: Record<string, string> | undefined;
 
   /**
    * Constructor
@@ -69,9 +69,9 @@ export class InfluxDB2Transport extends Transport {
 
     // Add global globalTags
     if (this.globalTags) {
-      Object.keys(this.globalTags).forEach((key) => {
-        point.tag(key, this.globalTags ? this.globalTags[key] : "");
-      });
+      for (const [key, value] of Object.entries(this.globalTags)) {
+        point.tag(key, value);
+      }
     }
 
     // Add message globalTags
